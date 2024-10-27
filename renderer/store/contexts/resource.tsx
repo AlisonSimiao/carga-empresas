@@ -4,6 +4,7 @@ import { EResource } from "../../typing/resource";
 interface IProps {
     setResource: (resources: TResourceData)=> void
     getResource: (resource: EResource) => string[]
+    data: TResourceData
 }
 
 export const resourceContext = createContext<IProps>({} as IProps)
@@ -25,7 +26,8 @@ export const ResourceProvider = ({children}) => {
 
     const value: IProps = {
         setResource,
-        getResource
+        getResource,
+        data
     }
 
     return (

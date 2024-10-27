@@ -2,7 +2,6 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 
 export async function loadLinks() {
-  //const db  = cone
     const url = 'https://dadosabertos.rfb.gov.br/CNPJ/dados_abertos_cnpj/2024-10/'
     const { data: html } = await axios.get(url);
     const data = {}
@@ -24,6 +23,6 @@ export async function loadLinks() {
           data[index].push(`${url}${href}`)
           
         });
-      console.log(data)
+
       return data
 }

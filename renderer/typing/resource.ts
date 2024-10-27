@@ -10,3 +10,11 @@ export enum EResource {
         SIMPLES = 'Simples',
         SOCIOS = 'Socio'
 }
+
+export enum EProcessState {
+        INITIAL,
+        SELECTING_URL,
+        DOWNLOADING,
+        SAVING_TO_DATABASE,
+        COMPLETED,
+      }

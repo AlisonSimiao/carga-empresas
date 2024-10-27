@@ -3,24 +3,21 @@ import Head from 'next/head'
 import { Select, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { EResource } from '../typing/resource'
+import { useResource } from '../store/hooks/resource'
 
 export default function HomePage() {
 const router = useRouter()
   const [state, setState] = useState(0)
-  const [data, setData] = useState({})
   const [error, setError] = useState('')
+  const { setResource, data } = useResource()
 
   function handleWork(ev){
-    const value = ev.target.value
-
-    const path = {
-      [EResource.CNAES]: '/cnae'
-    }[value] || '/not-found-resource'
-
-    path && router.push(path)
+    const resourceName = ev.target.value
+    
+    router.push(`/resource/${resourceName}`)
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     const _fetch = async () => {
       return fetch('/api/loadlinks')
     }
@@ -28,7 +25,7 @@ const router = useRouter()
     _fetch().then(
       async (res) => {
         const links = await res.json()
-        setData(links)
+        setResource(links)
         setError(null)
         setState(1)
       } 
@@ -56,7 +53,7 @@ const router = useRouter()
       {
         Object.entries(data).map(([key, value]) => {
           return (
-            <option value={key}>
+            <option key={key} value={key}>
               {key}
             </option>
           )

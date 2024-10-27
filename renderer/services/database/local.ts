@@ -23,7 +23,8 @@ export async function setupDatabase() {
 
     CREATE TABLE IF NOT EXISTS links (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      idResource
+      idResource INTEGER
+      ref TEXT
     );
   `);
   
@@ -32,36 +33,13 @@ export async function setupDatabase() {
   await db.close();
 }
 
-// Função para inserir dados
-async function insertData(codigo: string, descricao: string) {
+export async function getResource(resource: string) {
   const db = await connectToDatabase();
 
-  await db.run(`INSERT INTO items (codigo, descricao) VALUES (?, ?)`, codigo, descricao);
-  console.log(`Item inserido: ${codigo} - ${descricao}`);
+  await db.run(`
+      select * from resources
+      left join links on links.idResource = resources.id
+    `);
   
-  await db.close();
+  await db.close(); 
 }
-
-// Função para consultar os dados
-async function queryData() {
-  const db = await connectToDatabase();
-
-  const rows = await db.all(`SELECT * FROM items`);
-  
-  rows.forEach((row) => {
-    console.log(`ID: ${row.id}, Código: ${row.codigo}, Descrição: ${row.descricao}`);
-  });
-  
-  await db.close();
-}
-
-// Execução do código
-(async () => {
-  await setupDatabase(); // Configura a tabela
-
-  await insertData('001', 'Item Exemplo 1'); // Inserir dados
-  await insertData('002', 'Item Exemplo 2'); // Inserir mais dados
-  
-  console.log('Consulta dos dados:');
-  await queryData(); // Consultar dados
-})();
