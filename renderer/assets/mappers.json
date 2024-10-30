@@ -1,0 +1,58 @@
+{
+    "Cnaes": {
+        "headers": ["codigo", "descricao"],
+        "mappers": [
+            {
+                "fileProp": "codigo",
+                "dataBaseProp": "codigo"
+            },
+            {
+                "fileProp": "descricao",
+                "dataBaseProp": "descricao"
+            }
+        ],
+        "model": "cnae"
+    },
+    "Paises": {
+        "headers": ["codigo", "descricao"],
+        "mappers": [
+            {
+                "fileProp": "codigo",
+                "dataBaseProp": "codigo"
+            },
+            {
+                "fileProp": "descricao",
+                "dataBaseProp": "descricao"
+            }
+        ],
+        "model": "pais"
+    },
+    "Municipios": {
+        "headers": ["codigo", "descricao"],
+        "mappers": [
+            {
+                "fileProp": "codigo",
+                "dataBaseProp": "codigo"
+            },
+            {
+                "fileProp": "descricao",
+                "dataBaseProp": "descricao"
+            }
+        ],
+        "model": "cidade"
+    },
+    "Naturezas": {
+        "headers": ["codigo", "descricao"],
+        "mappers": [
+            {
+                "fileProp": "codigo",
+                "dataBaseProp": "codigo"
+            },
+            {
+                "fileProp": "descricao",
+                "dataBaseProp": "descricao"
+            }
+        ],
+        "model": "natureza"
+    }
+}

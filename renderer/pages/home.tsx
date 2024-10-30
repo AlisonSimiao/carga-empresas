@@ -48,8 +48,8 @@ const router = useRouter()
 
     {
       !error && 
-      <Select onInput={handleWork}>
-        <option value="" disabled selected>Recursos</option>
+      <Select onInput={handleWork} defaultValue={'DEFAULT'}>
+        <option value="DEFAULT" disabled>Recursos</option>
       {
         Object.entries(data).map(([key, value]) => {
           return (
